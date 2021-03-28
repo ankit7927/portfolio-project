@@ -1,8 +1,9 @@
-
+import Login from './pages/Login'
 function App() {
   return (
     <div className="App">
-    <h1>hello t</h1>
+    <h1>hello redux </h1>
+    <Login/>
     </div>
   );
 }
