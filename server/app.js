@@ -21,8 +21,13 @@ app.use(
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect("mongodb://127.0.0.1:27017", { useNewUrlParser: true, useUnifiedTopology: true },()=>{
-  console.log("\t==== CONNECTED TO DATABASE ====\n")
+mongoose.connect("mongodb://127.0.0.1:27017", { useNewUrlParser: true, useUnifiedTopology: true },(err)=>{
+  if(err){
+    console.log(err.toString())
+  }else{
+    console.log("\t==== CONNECTED TO DATABASE ====\n")
+  }
+
 })
 
 app.use("/auth", require("./routes/auth"))

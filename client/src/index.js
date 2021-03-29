@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import userRed from './reducers/userReducer'
+//import userRed from './reducers/userReducer'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux';
-
-var store = createStore(userRed)
+import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,6 +11,8 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+//export default store
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

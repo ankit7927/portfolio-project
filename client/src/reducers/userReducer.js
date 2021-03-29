@@ -1,11 +1,13 @@
+import {ADD_USER} from "../constants"
+
 var initialState={
     user:""
 }
 
 function userRed(state=initialState, action) {
     switch (action.type) {
-        case "setUser":
-            return {...state, user:action.payload.user}
+        case ADD_USER:
+            return Object.assign({}, state, {user:state.user.concat(action.payload.user)});
         case "removeUser":
             return{...state, user:""}
     
