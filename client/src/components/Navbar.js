@@ -4,30 +4,31 @@ import { connect } from "react-redux";
 
 //window.store=store
 const mapStateToProps = state => {
-    return { user: state.user };
+    return { user: state.username };
   };
   
 
-function Nav({user}){
+function Nav(props){
    // alert(store.getState().user)
-    if (user) {
-        return (
-            <div>
-                <ul>
-                    <li>Moment</li>
-                    <li>othr stuffs</li>
-                    <li>{user}</li>
-                </ul>
-            </div>
-        )
-    } else {
-   return (<div>
+    if (!props.user) {
+      return (<div>
         <ul>
             <li>Moment</li>
             <li>login</li>
             <li>register</li>
         </ul>
     </div>)
+        
+    } else {
+   return (
+            <div>
+                <ul>
+                    <li>Moment</li>
+                    <li>othr stuffs</li>
+                    <li>{props.user}</li>
+                </ul>
+            </div>
+        )
     }
 }
 
