@@ -1,31 +1,21 @@
-import React, {useState, Link} from 'react'
-import {connect} from 'react-redux'
-import { addUser } from "../actions/index";
-import {Redirect} from 'react-router-dom'
+import React from 'react'
+//import {Redirect} from 'react-router-dom'
 import axios from "axios"
-// props.addUser({user})
-function mapDispatchToProps(dispatch) {
-    return {
-      addUser: userinfo => dispatch(addUser(userinfo))
-    };
-  }
 
-class LoginUser extends React.Component{
+class Login extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      userInfo:"",
       username:"",
       password:"",
-      //userinfo:""
     }
   }
-   /* const [username, setuser]=useState("")
-    const [password, setpass]=useState("")
-    const [userinfo, setInfo]=useState()
-    */
+  
+  
     
-    redirectToHome = () => {
-    const path = '/home'
+    redirectToHome =(name) => {
+    const path = `/${name}`
     const {
       history
     } = this.props;
@@ -37,21 +27,17 @@ class LoginUser extends React.Component{
             username:this.state.username,
             password:this.state.password
         }).then((res)=>{
-            //setInfo(res.data)
-            var x = res.data
-            addUser({x})
-            alert(res.data.username)
-           // this.props.history.push("/")
-           this.redirectToHome()
+          localStorage.setItem("token", res.data.token)
+          
+          localStorage.setItem("userInfo", res.data.username)
+           this.redirectToHome("home")
         }).catch(err => alert(err))
     }
     
-    onChangeHand=(e)=>{
-      
-    }
     render(){
     return (
         <div>
+        <h1>login page</h1>
         <form onSubmit={this.submit}>
            username: <input type="text" onChange={e => this.setState({
              username:e.target.value
@@ -61,15 +47,13 @@ class LoginUser extends React.Component{
            })} name="password"/><br/>
            <input type="submit" value="submit" />
          </form>
+                    <hr/>
+           <button onClick={()=>{this.redirectToHome("reg")}}>Register</button>
+         
         </div>
     )
     }
 }
 
-
-const Login =connect(
-    null,
-    mapDispatchToProps
-)(LoginUser)
 
 export default Login

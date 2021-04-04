@@ -1,40 +1,24 @@
-import React from 'react'
-import { connect } from "react-redux";
-//import store from '../store';
+import React, {useState, useEffect} from 'react'
+import {Link} from "react-router-dom"
 
-//window.store=store
-const mapStateToProps = state => {
-    return { user: state.username };
-  };
+function Navbar(props){
+  const [user, setUser] = useState("")
   
-
-function Nav(props){
-   // alert(store.getState().user)
-    if (!props.user) {
-      return (<div>
-        <ul>
-            <li>Moment</li>
-            <li>login</li>
-            <li>register</li>
-        </ul>
-    </div>)
-        
-    } else {
+  useEffect(()=>{
+    setUser(localStorage.getItem("userInfo"))
+  }, [])
+  
    return (
             <div>
                 <ul>
-                    <li>Moment</li>
+                    <li><Link to="/">Moment</Link></li>
                     <li>othr stuffs</li>
-                    <li>{props.user}</li>
+                    <li><Link to="/profile">{user}</Link></li>
                 </ul>
             </div>
         )
-    }
+    
 }
-
-const Navbar =connect(
-    mapStateToProps
-)(Nav)
 
 export default Navbar
 

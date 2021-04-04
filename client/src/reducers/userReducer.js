@@ -1,10 +1,7 @@
 import {ADD_USER} from "../actions/ActionTypes"
 
-var initialState={
-    userInfo:{}
-}
 
-function userRed(state=initialState, action) {
+function userRed(state={}, action) {
     switch (action.type) {
         case ADD_USER:
             return {...state, state:action.payload}

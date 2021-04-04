@@ -3,12 +3,18 @@ const mongoose = require('mongoose');
 var userSchema = mongoose.Schema({
     name:String,
     profilePic :String,
+    dob:Date,
+    email:String,
+    country:String,
     username :{
         type : String,
         unique : true,
         requred :true
     },
-    password : String,
+    password : {
+        type : String,
+        requred :true
+    },
     
     moments:[
         {
@@ -24,6 +30,9 @@ var userSchema = mongoose.Schema({
         }
     ],
     followers:[{
+        persion_id:String
+    }],
+    following:[{
         persion_id:String
     }]
 })
